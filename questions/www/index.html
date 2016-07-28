@@ -32,60 +32,9 @@
     <div class="container questions">
         
     </div>
-
-    <!--问题列表所用的模板-->
-    <script id="question" type="text/html">
-        {{each data as q}}
-        <div class="media" question="{{q.fileName}}">
-            <div class="media-left">
-                <a>
-                    <img class="media-object" 
-                    src="/uploads/{{q.petname}}.jpg" onerror="this.src='/images/user.png'">
-                </a>
-            </div>
-
-            <div class="media-body">
-                <h4 class="media-heading">{{q.petname}}</h4>
-                {{q.content}}
-                <div class="media-footing">
-                {{q.time}}
-                </div>
-            </div>
-        </div>
-
-        {{if q.answers.length > 0}}
-            {{include 'asks' q}}
-        {{/if}}
-
-        {{/each}}
-    </script>
-
-    <!--答案列表所用的模板-->
-    <script id="asks" type="text/html">
-        {{each answers as a}}
-        <div class="media media-child">
-            <div class="media-body">
-                <h4 class="media-heading">{{a.petname}}</h4>
-                {{a.content}}
-                <div class="media-footing">
-                    {{a.time}}
-                </div>
-            </div>
-
-            <div class="media-right">
-                <a>
-                    <img class="media-object" 
-                    src="/uploads/{{a.petname}}.jpg" onerror="this.src='/images/user.png'">
-                </a>
-            </div>
-        </div>
-        {{/each}}
-    </script>
-
     <script src="js/jquery-2.2.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.cookie.js"></script>
-    <script src="js/template.js"></script>
     <script src="js/index.js"></script>
 </body>
 

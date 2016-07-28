@@ -3,8 +3,17 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const fs = require('fs')
 const multer = require('multer')
+const template = require("art-template")
+
+//禁用缓存，开发时使用，上线时去掉
+template.config("cache", false)
 
 const app = express()
+
+// 指定以.html结尾的文件使用的解析引擎
+app.engine(".html", template.__express)
+// 指定使用html视图引擎
+app.set("view engine", "html")
 
 const storage = multer.diskStorage({
     destination: 'www/uploads',
@@ -42,6 +51,14 @@ app.post('/api/register', (req, res) => {
         }
     })
 })
+
+app.get("/user/login", (req, res) => {
+    var data = {
+        title: "登录"
+    }
+    res.render("user/signin", data)
+})
+
 //登录接口
 app.post('/api/login', (req, res) => {
     var fileName = `www/users/${req.body.petname}.txt`
